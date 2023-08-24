@@ -1,0 +1,12 @@
+.container  {
+  list-style-type:none;
+  display: flex;
+  gap: 1rem;
+}
+
+.item {
+  cursor: pointer;
+  &:hover {
+    border-bottom: solid 3px black;
+  }
+}

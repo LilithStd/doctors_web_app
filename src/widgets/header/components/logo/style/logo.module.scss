@@ -1,0 +1,11 @@
+.container  {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  gap: 1rem;
+}
+.image {
+  background-color: rgba(138, 158, 1, 1);
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px black;
+}
