@@ -2,11 +2,10 @@ import {SliderContentTypes} from "@/features/slider/types/sliderContentTypes";
 
 export default function SliderContent ({id,title,content}:SliderContentTypes) {
 
-	console.log(title)
+	console.log()
     return  (
 
         <div>
-	        <h2></h2>
 	        {id}
 	        {title}
 	        {content}
