@@ -12,12 +12,12 @@ export default function Slider () {
     const sliderContent = SLIDER_ITEM[currentSlider]
     const incrementSliderItem = () => {
         const firstSliderItem = currentSlider === 0
-        const newIndex = firstSliderItem ? currentSlider + 1 : 0
+        const newIndex = firstSliderItem || currentSlider < SLIDER_ITEM.length - 1 ? currentSlider + 1 : 0
         setCurrentSlider(newIndex)
     }
     const decrementSliderItem = () => {
         const lastSliderItem = currentSlider === SLIDER_ITEM.length - 1
-        const newIndex = lastSliderItem ? currentSlider - 1 : currentSlider === 0 ? currentSlider + 1: currentSlider - 1
+        const newIndex = lastSliderItem || currentSlider > 0 ? currentSlider - 1 : SLIDER_ITEM.length - 1
         setCurrentSlider(newIndex)
     }
 
