@@ -3,3 +3,23 @@
   justify-content: space-around;
   background-color: pink;
 }
+
+.container-slider-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style-type:none;
+  gap: 1rem;
+}
+
+.count {
+  width: 5px;
+  height: 2px;
+  &:hover{
+  cursor: pointer;
+}
+}
