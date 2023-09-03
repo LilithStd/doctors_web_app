@@ -5,7 +5,7 @@ import arrowLeft from '../assets/arrow_left.svg'
 import arrowRight from '../assets/arrow_right.svg'
 import SliderContentContainer from "@/features/slider/components/container/ui/slider-content-container";
 import {SLIDER_ITEM} from "@/features/slider/const/slider-item";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 
 export default function Slider () {
@@ -20,6 +20,9 @@ export default function Slider () {
        setCurrentSlider(redirectItem)
 
     }
+
+
+
     const incrementSliderItem = () => {
         const firstSliderItem = currentSlider === 0
         const newIndex = firstSliderItem || currentSlider < SLIDER_ITEM.length - 1 ? currentSlider + 1 : 0

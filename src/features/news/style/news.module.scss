@@ -1,0 +1,10 @@
+.container  {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.subContainer {
+  display: flex;
+  gap: 1rem;
+}

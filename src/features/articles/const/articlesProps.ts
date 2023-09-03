@@ -1,0 +1,3 @@
+export const ARTICLES_PROPS = {
+	TITLE_SIZE:'MEDIUM'
+}
