@@ -10,7 +10,6 @@ export default function Articles () {
             <Title size={ARTICLES_PROPS.TITLE_SIZE} content={'ARTICLES'}/>
             <div className={articles.subContainer}>
                 <Article/>
-                <Article/>
             </div>
         </div>
     )
