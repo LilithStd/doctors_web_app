@@ -4,20 +4,20 @@ import Image from "next/image";
 import arrowLeft from '../assets/arrow_left.svg'
 import arrowRight from '../assets/arrow_right.svg'
 import SliderContentContainer from "@/features/slider/components/container/ui/slider-content-container";
-import {SLIDER_ITEM} from "@/features/slider/const/slider-item";
-import {useEffect, useState} from "react";
+import { SLIDER_ITEM } from "@/features/slider/const/slider-item";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
-export default function Slider () {
-    const [currentSlider,setCurrentSlider] = useState(0)
+export default function Slider() {
+    const [currentSlider, setCurrentSlider] = useState(0)
     const SLIDER_ITEMS = SLIDER_ITEM.slice()
     const sliderContent = SLIDER_ITEMS[currentSlider]
-    const redirectSliderItem = (item:string) => {
+    const redirectSliderItem = (item: string) => {
         const redirectItem = SLIDER_ITEMS.findIndex(
             (index) => index.id === item
 
         )
-       setCurrentSlider(redirectItem)
+        setCurrentSlider(redirectItem)
 
     }
 
@@ -34,28 +34,28 @@ export default function Slider () {
         setCurrentSlider(newIndex)
     }
 
-    return  (
+    return (
 
         <div className={slider.container}>
-            <Image src={arrowLeft} alt={'arrow-left'} onClick={decrementSliderItem}/>
-                <div className={slider.containerSliderContent}>
-                    <SliderContentContainer  props={sliderContent}/>
-                    <ul className={slider.pagination} >
-                        {SLIDER_ITEMS.map((item) =>
-                            <li className={slider.count}
-                                key={item.id}
-                                onClick={
-                                    () => {
-                                        redirectSliderItem(item.id)
-                                    }
+            <Image src={arrowLeft} alt={'arrow-left'} onClick={decrementSliderItem} />
+            <div className={slider.containerSliderContent}>
+                <SliderContentContainer id={sliderContent.id} title={sliderContent.title} content={sliderContent.content} />
+                <ul className={slider.pagination} >
+                    {SLIDER_ITEMS.map((item) =>
+                        <li className={slider.count}
+                            key={item.id}
+                            onClick={
+                                () => {
+                                    redirectSliderItem(item.id)
+                                }
                             }>
-                                {item.id}
-                            </li>
-                        )}
-                    </ul>
+                            {item.id}
+                        </li>
+                    )}
+                </ul>
 
-                </div>
-            <Image src={arrowRight} alt={'arrow-right'} onClick={incrementSliderItem}/>
+            </div>
+            <Image src={arrowRight} alt={'arrow-right'} onClick={incrementSliderItem} />
         </div>
     )
 }
