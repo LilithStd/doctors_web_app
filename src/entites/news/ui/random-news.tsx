@@ -6,7 +6,6 @@ import randomNews from "@/entites/news/style/random-news.module.scss"
 
 export default function RandomNews () {
     return  (
-
         <div className={randomNews.container}>
 	        <Title size={NEWS_PROPS.TITLE_SIZE} content={NEWS_PROPS.content}/>
             <Text content={NEWS_CONTENT_PROPS.content}/>

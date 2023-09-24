@@ -8,7 +8,9 @@ export default function News () {
     return  (
 
         <div className={news.container}>
-            <Title size={NEWS_PROPS.TITLE_SIZE} content={'NEWS'}/>
+            <div className={news.titleContainer}>
+                <Title size={NEWS_PROPS.TITLE_SIZE} content={'Random NEWS'}/>
+            </div>
             <div className={news.subContainer}>
                 <RandomNews/>
                 <RandomNews/>

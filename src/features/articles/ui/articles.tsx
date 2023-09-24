@@ -7,7 +7,9 @@ export default function Articles () {
     return  (
 
         <div className={articles.container}>
-            <Title size={ARTICLES_PROPS.TITLE_SIZE} content={'ARTICLES'}/>
+            <div className={articles.titleContainer}>
+                <Title size={ARTICLES_PROPS.TITLE_SIZE} content={'ARTICLES'}/>
+            </div>
             <div className={articles.subContainer}>
                 <Article/>
             </div>

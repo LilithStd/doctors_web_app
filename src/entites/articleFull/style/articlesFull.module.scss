@@ -1,0 +1,10 @@
+.container  {
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  background-color: cadetblue;
+}
+
+.subContainer {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
