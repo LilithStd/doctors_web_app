@@ -6,7 +6,6 @@ export default function ArticlesPages () {
 
         <div className={articles.container}>
             <ArticleFull/>
-
         </div>
     )
 }

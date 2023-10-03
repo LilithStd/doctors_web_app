@@ -2,11 +2,13 @@
   list-style-type:none;
   display: flex;
   gap: 1rem;
+  align-self: center;
 }
 
 .item {
   cursor: pointer;
-  &:hover {
-    border-bottom: solid 3px black;
-  }
+}
+
+.link {
+    text-decoration:none;
 }
