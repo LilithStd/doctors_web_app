@@ -3,8 +3,12 @@ import modalWindow from "@/features/navbar/components/modal_window/style/modal_w
 
 export default function ModalWindow({ active, setActive, children }: ModalWindowTypes) {
     return (
-        <div className={`${modalWindow.container} + ${active ? modalWindow.modalActive : ''}`} onClick={() => setActive(false)}>
-            <div className={modalWindow.contentContainer} onClick={(e) => e.stopPropagation()}>
+        <div className={`${modalWindow.container} + ${active ? modalWindow.modalActive : ''}`} onClick={() => setActive ? setActive(false) : ''}>
+            <div className={modalWindow.contentContainer} onClick={(e) => {e.stopPropagation();
+                if (setActive) {
+                    setActive(false)
+                }}
+            }>
                 {children}
             </div>
         </div>

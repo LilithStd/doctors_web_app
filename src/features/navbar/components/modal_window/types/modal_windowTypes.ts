@@ -1,5 +1,5 @@
 export interface ModalWindowTypes{
     active?:boolean,
-    setActive?:any
+    setActive?:(arg:boolean) => void
     children:React.ReactNode
 }

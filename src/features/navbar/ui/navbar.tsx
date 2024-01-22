@@ -24,7 +24,11 @@ export default function Navbar() {
 			{isMobile ? (
 				<>
 					<Image src={burgerIcons} alt={'burger_icons'} width={30} height={30} onClick={() => deviceScreenHandler()} />
-					<ModalWindow active={active} setActive={setActive} children={<NavbarItems screenSize={isMobile} />} />
+					<ModalWindow
+						active={active}
+						setActive={setActive}
+						children={<NavbarItems screenSize={isMobile}
+						/>} />
 
 				</>
 
