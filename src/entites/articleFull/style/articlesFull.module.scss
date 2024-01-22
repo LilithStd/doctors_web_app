@@ -1,6 +1,6 @@
 .container  {
   display: grid;
-  grid-template-columns: repeat(1,1fr);
+  grid-template-columns: 1fr;
   gap: 1rem;
 }
 
@@ -10,9 +10,16 @@
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  margin: 0 20rem;
-  @media screen and (max-width: 640px) {
-    grid-template-columns: repeat(1, 1fr);
+  
+  @media (min-width: 767px) and (max-width: 1199px) {
+    
+  }
+  @media (min-width: 1200px) {
+    
+  }
+  @media (max-width: 766px) {
+    grid-template-columns: 1fr;
+    margin: 1rem;
   }
 }
 
@@ -23,5 +30,4 @@
 
 .title  {
   text-align: center;
-  margin: 1rem;
 }
