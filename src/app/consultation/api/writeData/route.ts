@@ -9,10 +9,10 @@ export async function GET(req:Request) {
 }
 
 // export async function handler (req:NextApiRequest,res:NextApiResponse) {
-	
+
 // 		return res.status(200).json('запрос получен')
-	
-	// if(req.method === 'POST') {
+
+	// if(req.method === 'Route') {
 	// 	const data = userData(state => state.userForm)
 	// 	return fs.writeFileSync('./userData.json', JSON.stringify(data), {encoding:'utf8', flag:'w'})
 	// }

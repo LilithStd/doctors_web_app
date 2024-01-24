@@ -15,10 +15,6 @@ export default function Slider() {
     const [currentSlider, setCurrentSlider] = useState(0)
     // @ts-ignore
     const { isMobile } = useMatchMedia()
-    function getRandomInteger(min:number, max:number) {
-        const result = Math.floor(Math.random() * (max - min + 1)) + min;
-        return result.toString()
-    }
     const SLIDER_ITEMS = SLIDER_ITEM.slice()
     const sliderContent = SLIDER_ITEMS[currentSlider]
 

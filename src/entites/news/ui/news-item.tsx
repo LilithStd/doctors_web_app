@@ -3,12 +3,13 @@ import { NEWS_BUTTON_PROPS, NEWS_CONTENT_PROPS, NEWS_PROPS } from "@/entites/new
 import { Text } from "@/shared/ui/text/ui/text";
 import { Button } from "@/shared/ui/button/ui/button";
 import randomNews from "@/entites/news/style/random-news.module.scss"
+import {NewsItemProps} from "@/entites/news/types/newsItemProps";
 
-export default function RandomNews() {
+export default function NewsItem({titleContext,contentContext}:NewsItemProps) {
     return (
         <div className={randomNews.container}>
-            <Title property={randomNews.titleProperty} size={NEWS_PROPS.TITLE_SIZE} content={NEWS_PROPS.content} />
-            <Text content={NEWS_CONTENT_PROPS.content} />
+            <Title property={randomNews.titleProperty} size={NEWS_PROPS.TITLE_SIZE} content={titleContext} />
+            <Text content={contentContext} />
             <Button property={randomNews.buttonProperty} content={NEWS_BUTTON_PROPS.content} />
         </div>
     )
