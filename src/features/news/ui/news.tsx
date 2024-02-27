@@ -27,9 +27,13 @@ export default function News () {
     const newsResult = newsStore(state => state.newsAll)
     const loading = newsStore(state => state.loading)
 
+
     function RandomNews() {
         const randomNews:ArrayItem[] = []
         const copyOriginal = newsResult.slice();
+        setInterval(function () {
+
+        },10000)
 
         for (let i = 0; i < 2 ;i++) {
 
@@ -38,7 +42,7 @@ export default function News () {
             randomNews.push(randomElement)
             }
         return randomNews
-        }
+    }
 
 
     const randomNews = RandomNews()
@@ -53,6 +57,7 @@ export default function News () {
                 { loading ? randomNews.map((item) =>
                     <NewsItem
                         key={item.id}
+                        id={item.id}
                         titleContext={item.title}
                         contentContext={item.content}
 

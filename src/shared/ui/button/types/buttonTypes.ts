@@ -1,5 +1,8 @@
+import {ReactNode} from "react";
+
 export interface ButtonTypes {
-	content:string,
+	content?:string,
 	property?:string,
-	callBack?: () => void
+	callBack?: () => void,
+	children?: ReactNode
 }

@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   description: 'Information, self-testing, registration for an appointment and more other',
 }
 
+
+
 export default function RootLayout({
   children,
 }: {

@@ -17,10 +17,7 @@ export default function ArticleFull () {
                 <Search/>
             </div>
             <div className={articlesFull.subContainer}>
-                <Article/>
-                <Article/>
-                <Article/>
-                <Article/>
+
             </div>
 
         </div>

@@ -8,7 +8,7 @@ const queries = [
 
 ]
 export const useMatchMedia = () => {
-	if ( typeof window === 'undefined') return 
+	if ( typeof window === 'undefined') return
 	const mediaQueryLists = queries.map(query => matchMedia(query))
 	const getValues = () => mediaQueryLists.map(mql => mql.matches)
 	const [values,setValue] = useState(getValues)

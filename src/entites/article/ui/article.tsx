@@ -11,21 +11,35 @@ import article from "@/entites/article/style/article.module.scss"
 import { Button } from "@/shared/ui/button/ui/button";
 import ArticleLogo from "@/entites/article/components/articleLogo/ui/articleLogo";
 import { useMatchMedia } from "@/shared/hooks/media_query";
+import Link from "next/link";
+import {ArticleItemProps} from "@/entites/article/types/articleItemProps";
 
-export default function Article() {
+export default function ArticleItem({id,titleContext,contentContext}:ArticleItemProps) {
 	// @ts-ignore
 	const { isMobile } = useMatchMedia()
-
+	const redirectCallback = () => {
+		return <Link
+			href={`/articles/${id}`}
+			style={{textDecoration: 'none'}}>
+			{ARTICLE_BUTTON_PROPS.content}
+		</Link>
+	}
 	return (
-
 		<div className={article.container}>
-			<Title property={article.titleProperty} size={ARTICLES_PROPS.TITLE_SIZE} content={ARTICLE_PROPS.content} />
+			<Title
+				property={article.titleProperty}
+				size={ARTICLES_PROPS.TITLE_SIZE}
+				content={titleContext} />
 			<div className={article.subContainer}>
-				{isMobile ? '' : <ArticleLogo />}
+				{isMobile? '' : <ArticleLogo />}
 
 				<div className={article.contentContainer}>
-					<Text content={ARTICLE_CONTENT_PROPS.content} />
-					<Button property={article.buttonProperty} content={ARTICLE_BUTTON_PROPS.content} />
+					<Text content={contentContext} />
+					<Button
+						property={article.buttonProperty}
+						content={ARTICLE_BUTTON_PROPS.content}
+						children={redirectCallback()}
+					/>
 				</div>
 			</div>
 		</div>

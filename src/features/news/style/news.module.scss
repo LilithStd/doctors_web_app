@@ -13,10 +13,10 @@
   display: flex;
   gap: 1rem;
     @media (min-width: 767px) and (max-width: 1199px) {
-      
+      flex-direction: column;
     }
     @media (min-width: 1200px) {
-      
+      flex-direction: column;
     }
     @media (max-width: 766px) {
       flex-direction: column;

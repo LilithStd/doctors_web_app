@@ -26,14 +26,6 @@ export default function Slider() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            // if(currentSliderElement < SLIDER_ITEM.length - 1) {
-            //     console.log('trigger 1st')
-            //     console.log(sliderContent)
-            //     storeSetElement(currentSliderElement + 1)
-            // }else {
-            //     console.log('2nd trigger')
-            //     storeSetElement(0)
-            // }
             if(currentSlider < SLIDER_ITEM.length - 1) {
 
                 setCurrentSlider( currentSlider + 1)

@@ -1,13 +1,14 @@
 .mainContainer {
   display: grid;
   margin: 0 auto;
+  width: 100%;
   @media (min-width: 767px) and (max-width: 1199px) {
-    width: 90%;
+
   }
   @media (min-width: 1200px) {
     width: 70%;
   }
   @media (max-width: 766px) {
-    width: 100%;
+
   }
 }
