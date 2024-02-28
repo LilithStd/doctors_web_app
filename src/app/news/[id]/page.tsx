@@ -37,7 +37,6 @@ export async function getStaticProps(context:any) {
 export default function News (props: CurrentNewsProps) {
 	const getNews = newsStore(state => state.newsAll)
 	const setCurrentNews = newsStore(state => state.setCurrentNews)
-
 	setCurrentNews(props.params.id)
 	const storeCurrentNews = newsStore(state => state.currentNews)
 
