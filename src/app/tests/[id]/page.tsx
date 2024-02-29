@@ -1,16 +1,23 @@
 'use client'
-import {testsStore} from "@/app/tests/store/testsStore";
+import {QuestionItem, testsStore} from "@/app/tests/store/testsStore";
 import {Title} from "@/shared/ui/title/title";
 import {SIZE_TITLE_GLOBAL} from "@/global_utils/title_props/title_props";
 import {Text} from "@/shared/ui/text/ui/text";
 import testId from '@/app/tests/[id]/style/testId.module.scss'
-import {useState} from "react";
 import {Button} from "@/shared/ui/button/ui/button";
-import {EventType} from "react-hook-form";
+import {FieldValues, SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
+import {BUTTON_TYPE} from "@/shared/ui/button/const/button_type";
+
 
 export interface CurrentTestsProps {
 	params: {id:string}
 }
+
+
+interface FormValues  {
+	[key: string]: string;
+}
+
 
 export async function getStaticPaths() {
 	const response = await fetch ('http://localhost:3000/api/tests');
@@ -36,6 +43,9 @@ export async function getStaticProps(context:any) {
 	}
 }
 export default function Test(props:CurrentTestsProps) {
+	const {register,
+		handleSubmit
+	} =  useForm<FormValues>()
 	const getTest = testsStore(state => state.testsAll)
 	const setCurrentTest = testsStore(state => state.setCurrentTest)
 	setCurrentTest(props.params.id)
@@ -44,17 +54,31 @@ export default function Test(props:CurrentTestsProps) {
 		getTest.length !== 0 ?
 			storeCurrentTest :
 				{id:'1',title:'Error News Identification',content:'',questions:[]}
-	const formSubmitHandler = (e:any) => {
-		e.preventDefault();
-
-		// Read the form data
-		const form = e.target;
-		const formData = new FormData(form);
-
-		// Or you can work with it as a plain object:
-		const formJson = Object.fromEntries(formData.entries());
-		console.log(formJson);
+	// const formSubmitHandler = (e:HTMLFormElement) => {
+	// 	e.preventDefault();
+	// 	// Read the form data
+	// 	const form= e.target;
+	// 	const formData = new FormData(form);
+	// 	// Or you can work with it as a plain object:
+	// 	const formJson = Object.fromEntries(formData.entries());
+	// 	if(Object.keys(formJson).length < 3) {
+	// 		alert("Нужно ответить на все вопросы")
+	// 	}else{
+	// 		console.log('Все ответы получены')}
+	// }
+	const onSubmit:SubmitHandler<FormValues> = data => {
+		console.log(data)
 	}
+
+	const onError:SubmitErrorHandler<FormValues> = data => {
+		alert('Нужно ответить на все вопросы!')
+	}
+
+	const onClick = () => {
+
+	}
+
+
 	return (
 		<div>
 			<Title
@@ -65,7 +89,7 @@ export default function Test(props:CurrentTestsProps) {
 			<Text content={currentTest!.content}/>
 			<form
 				className={testId.formContainer}
-				onSubmit={formSubmitHandler}
+				onSubmit={handleSubmit(onSubmit, onError)}
 			>
 				{
 					currentTest.questions.length !== 0 ?
@@ -73,13 +97,20 @@ export default function Test(props:CurrentTestsProps) {
 							<label key={item.title}>
 								{
 									item.variants.map((variants) =>
-										<input
-											type={"radio"}
-											name={item.title}
-											key={variants.title}
-											value={variants.count}
-										/>
+												<input
+													{...register(
+														item.title,
+														{
+															required:true
+														}
+													)
+													}
+													type={"radio"}
+													key={variants.title}
+													value={variants.count}
+												/>
 									)
+
 								}
 
 								{item.title}
@@ -90,8 +121,8 @@ export default function Test(props:CurrentTestsProps) {
 
 			<Button
 				content={'Get Result'}
-				type={"submit"}
-
+				type={BUTTON_TYPE.SUBMIT}
+				callBack={onClick}
 			/>
 			</form>
 		</div>

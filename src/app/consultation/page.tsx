@@ -14,14 +14,15 @@ import { formProps } from "@/app/consultation/api/types/apiConsultationTypes";
 import { userData } from "@/app/consultation/store/consultationsStore";
 import SelectList from "./components/selectList/selectList";
 import Select from 'react-select';
+import {BUTTON_TYPE} from "@/shared/ui/button/const/button_type";
 
 
 
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-];
+// const options = [
+//     { value: 'chocolate', label: 'Chocolate' },
+//     { value: 'strawberry', label: 'Strawberry' },
+//     { value: 'vanilla', label: 'Vanilla' },
+// ];
 
 
 
@@ -90,8 +91,10 @@ export default function Consultation() {
                         <Text content={'Я подтверждаю согласие на обработку своих персональных данных, с Политикой обработки данных ознакомлен.'} />
                     </div>
 
-                    <Button property={consultation.signUpButton}
+                    <Button
+                        property={consultation.signUpButton}
                         content={'Записаться'}
+                        type={BUTTON_TYPE.SUBMIT}
                     />
                 </form>
 
