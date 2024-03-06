@@ -1,3 +1,4 @@
 export interface TextTypes {
-	content:string
+	content:string,
+	full?:boolean
 }

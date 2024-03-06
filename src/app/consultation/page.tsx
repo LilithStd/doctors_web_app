@@ -14,7 +14,7 @@ import { formProps } from "@/app/consultation/api/types/apiConsultationTypes";
 import { userData } from "@/app/consultation/store/consultationsStore";
 import SelectList from "./components/selectList/selectList";
 import Select from 'react-select';
-import {BUTTON_TYPE} from "@/shared/ui/button/const/button_type";
+import { BUTTON_TYPE } from "@/shared/ui/button/const/button_type";
 
 
 

@@ -9,12 +9,25 @@ import {Title} from "@/shared/ui/title/title";
 import {SIZE_TITLE_GLOBAL} from "@/global_utils/title_props/title_props";
 import Search from "@/shared/ui/search/ui/search";
 import ArticleItem from "@/entites/article/ui/article";
+import {searchStore} from "@/shared/ui/search/store/searchStore";
 
 
 export default function ArticlesPages () {
-    const articlesAll = articlesStore(state => state.articlesAll)
+    const articlesAll =  articlesStore(state => state.articlesAll)
     const { data, isLoading,error } = useSWR<ArrayItem[]>('http://localhost:3000/api/articles', fetchDataArticles);
     const getArticles = articlesStore(state => state.getAllArticles)
+    const searchLoading = searchStore(state => state.loading)
+    const searchContext = searchStore(state => state.currentSearch)
+
+    const searchHandler = () => {
+        if(searchLoading) {
+            return articlesAll.filter((item) => item.title.toLowerCase().includes(searchContext))
+
+        }else return []
+
+    }
+
+    const isSearchResult = searchHandler()
 
     useEffect (() =>
         {
@@ -24,6 +37,7 @@ export default function ArticlesPages () {
         }
         ,[data]
     )
+
 
     return  (
 
@@ -37,7 +51,7 @@ export default function ArticlesPages () {
                     <Search/>
                 </div>
                 <div className={articlesFull.subContainer}>
-                    {articlesAll ?
+                    {articlesAll && searchContext === '' ?
                         articlesAll.map((item) =>
                             <ArticleItem
                                 key={item.id}
@@ -45,7 +59,14 @@ export default function ArticlesPages () {
                                 titleContext={item.title}
                                 contentContext={item.content}
                             />)
-                        : 'Loading'
+                        : isSearchResult.length !== 0 ? isSearchResult.map((item) =>
+                                <ArticleItem
+                                    key={item.id}
+                                    id={item.id}
+                                    titleContext={item.title}
+                                    contentContext={item.content}
+                                />):'Совпадений не найдено'
+
                     }
                 </div>
 

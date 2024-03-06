@@ -7,6 +7,8 @@ import testId from '@/app/tests/[id]/style/testId.module.scss'
 import {Button} from "@/shared/ui/button/ui/button";
 import {FieldValues, SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
 import {BUTTON_TYPE} from "@/shared/ui/button/const/button_type";
+import {useEffect} from "react";
+import {useRouter} from "next/navigation";
 
 
 export interface CurrentTestsProps {
@@ -43,6 +45,7 @@ export async function getStaticProps(context:any) {
 	}
 }
 export default function Test(props:CurrentTestsProps) {
+	const router = useRouter()
 	const {register,
 		handleSubmit
 	} =  useForm<FormValues>()
@@ -54,6 +57,13 @@ export default function Test(props:CurrentTestsProps) {
 		getTest.length !== 0 ?
 			storeCurrentTest :
 				{id:'1',title:'Error News Identification',content:'',questions:[]}
+	useEffect(() => {
+		if(currentTest.title === 'Error News Identification') {
+			router.push('/')
+			console.log('redirect to main page')
+		}
+
+	},[currentTest.title])
 	// const formSubmitHandler = (e:HTMLFormElement) => {
 	// 	e.preventDefault();
 	// 	// Read the form data

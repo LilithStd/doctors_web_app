@@ -6,5 +6,5 @@ export const NAVBAR_ITEMS = [
 	{name:'Новости',link:'news'},
 	{name:'Тестирование',link:'tests'},
 	{name:'Консультация',link:'consultation'},
-	{name:'О нас',link:'#'}
+	{name:'О нас',link:'about'}
 ]
