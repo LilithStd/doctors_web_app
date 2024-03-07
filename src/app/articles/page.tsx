@@ -20,10 +20,10 @@ export default function ArticlesPages () {
     const searchContext = searchStore(state => state.currentSearch)
 
     const searchHandler = () => {
-        if(searchLoading) {
+        if(searchLoading && searchContext !== '') {
             return articlesAll.filter((item) => item.title.toLowerCase().includes(searchContext))
 
-        }else return []
+        }else return articlesAll
 
     }
 
@@ -51,23 +51,31 @@ export default function ArticlesPages () {
                     <Search/>
                 </div>
                 <div className={articlesFull.subContainer}>
-                    {articlesAll && searchContext === '' ?
-                        articlesAll.map((item) =>
-                            <ArticleItem
-                                key={item.id}
-                                id={item.id}
-                                titleContext={item.title}
-                                contentContext={item.content}
-                            />)
-                        : isSearchResult.length !== 0 ? isSearchResult.map((item) =>
-                                <ArticleItem
-                                    key={item.id}
-                                    id={item.id}
-                                    titleContext={item.title}
-                                    contentContext={item.content}
-                                />):'Совпадений не найдено'
-
+                    {isSearchResult.map((item) =>
+                        <ArticleItem
+                            key={item.id}
+                            id={item.id}
+                            titleContext={item.title}
+                            contentContext={item.content}
+                        />)
                     }
+                    {/*{articlesAll && searchContext === '' ?*/}
+                    {/*    articlesAll.map((item) =>*/}
+                    {/*        <ArticleItem*/}
+                    {/*            key={item.id}*/}
+                    {/*            id={item.id}*/}
+                    {/*            titleContext={item.title}*/}
+                    {/*            contentContext={item.content}*/}
+                    {/*        />)*/}
+                    {/*    : isSearchResult.length !== 0 ? isSearchResult.map((item) =>*/}
+                    {/*            <ArticleItem*/}
+                    {/*                key={item.id}*/}
+                    {/*                id={item.id}*/}
+                    {/*                titleContext={item.title}*/}
+                    {/*                contentContext={item.content}*/}
+                    {/*            />):'Совпадений не найдено'*/}
+
+                    {/*}*/}
                 </div>
 
             </div>

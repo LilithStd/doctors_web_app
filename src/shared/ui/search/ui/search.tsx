@@ -3,14 +3,16 @@ import search from '@/shared/ui/search/style/search.module.scss'
 import Image from "next/image";
 import searchIcon from '@/shared/ui/search/assets/search_icon.svg'
 import {searchStore} from "@/shared/ui/search/store/searchStore";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 export default function Search () {
 	const testSymbol = /^[A-Za-z0-9]+$/
 	const setSearch  = searchStore(state => state.setCurrentSearch)
-
 	const [searchContext, setSearchContext] = useState('');
+	useEffect(() => {
+		setSearch(searchContext)
+	},[])
 
 	return  (
         <div className={search.container}>
@@ -29,7 +31,11 @@ export default function Search () {
 
 	        />
 	        <div className={search.iconContainer}
-	             onClick={() => setSearch(searchContext)}
+	             onClick={() => {
+						 setSearch(searchContext)
+
+	             }
+				}
 	        >
 
 			        <Image
