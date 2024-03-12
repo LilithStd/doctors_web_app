@@ -2,7 +2,7 @@
 import {ArrayItem, newsStore} from "@/app/news/store/newsStore";
 import {Title} from "@/shared/ui/title/title";
 import {Text} from "@/shared/ui/text/ui/text";
-import {SIZE_TITLE_GLOBAL} from "@/global_utils/title_props/title_props";
+import {SIZE_TITLE_GLOBAL} from "@/global_utils/titleProps/title_props";
 import newsId from "./style/newsId.module.scss"
 
 

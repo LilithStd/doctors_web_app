@@ -1,4 +1,4 @@
-import {SIZE_TITLE_GLOBAL} from "@/global_utils/title_props/title_props";
+import {SIZE_TITLE_GLOBAL} from "@/global_utils/titleProps/title_props";
 
 export const ARTICLE_PROPS = {
 	TITLE_SIZE:SIZE_TITLE_GLOBAL.SMALL,

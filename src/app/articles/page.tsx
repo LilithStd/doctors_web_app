@@ -6,7 +6,7 @@ import {fetchDataArticles} from "@/app/articles/api/articlesAPI";
 import {ArrayItem, articlesStore} from "@/app/articles/store/articlesStore";
 import articlesFull from "@/entites/articleFull/style/articlesFull.module.scss";
 import {Title} from "@/shared/ui/title/title";
-import {SIZE_TITLE_GLOBAL} from "@/global_utils/title_props/title_props";
+import {SIZE_TITLE_GLOBAL} from "@/global_utils/titleProps/title_props";
 import Search from "@/shared/ui/search/ui/search";
 import ArticleItem from "@/entites/article/ui/article";
 import {searchStore} from "@/shared/ui/search/store/searchStore";

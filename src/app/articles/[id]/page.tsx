@@ -3,7 +3,7 @@ import {newsStore} from "@/app/news/store/newsStore";
 import {articlesStore} from "@/app/articles/store/articlesStore";
 import articleId from "@/app/articles/[id]/style/articleId.module.scss"
 import {Title} from "@/shared/ui/title/title";
-import {SIZE_TITLE_GLOBAL} from "@/global_utils/title_props/title_props";
+import {SIZE_TITLE_GLOBAL} from "@/global_utils/titleProps/title_props";
 import {Text} from "@/shared/ui/text/ui/text";
 
 export interface CurrentArticleProps {

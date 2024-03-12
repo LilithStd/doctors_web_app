@@ -1,7 +1,7 @@
 'use client'
 import consultation from "@/app/consultation/style/consultation.module.scss"
 import { Title } from "@/shared/ui/title/title";
-import { SIZE_TITLE_GLOBAL } from "@/global_utils/title_props/title_props";
+import { SIZE_TITLE_GLOBAL } from "@/global_utils/titleProps/title_props";
 import consultationImage from "@/app/consultation/assets/consultation_default_image.png"
 import Image from "next/image";
 import { Button } from "@/shared/ui/button/ui/button";
