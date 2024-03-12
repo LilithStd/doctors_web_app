@@ -18,10 +18,6 @@ export default function Slider() {
     const SLIDER_ITEMS = SLIDER_ITEM.slice()
     const sliderContent = SLIDER_ITEMS[currentSlider]
 
-    const storeSetElement = sliderStore( state => state.setElement)
-    const currentSliderElement = sliderStore(state => state.currentSliderItem)
-    // const sliderContent = SLIDER_ITEMS[currentSliderElement]
-
 
 
     useEffect(() => {
@@ -54,7 +50,6 @@ export default function Slider() {
         const firstSliderItem = currentSlider === 0
         const newIndex = firstSliderItem || currentSlider < SLIDER_ITEM.length - 1 ? currentSlider + 1 : 0
         setCurrentSlider(newIndex)
-        console.log(currentSlider)
     }
     const decrementSliderItem = () => {
         const lastSliderItem = currentSlider === SLIDER_ITEM.length - 1
@@ -70,7 +65,9 @@ export default function Slider() {
                 <SliderContentContainer
                     id={sliderContent.id}
                     title={sliderContent.title}
-                    content={sliderContent.content} />
+                    content={sliderContent.content}
+                    property={slider.animation}
+                />
                 <Pagination
                     sliderItems={SLIDER_ITEMS}
                     currentSliderItem={sliderContent.id}
