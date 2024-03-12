@@ -1,0 +1,40 @@
+.container  {
+  background-color: slateblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+  border-radius: 20px;
+  @media (min-width: 767px) and (max-width: 1199px) {
+    
+  }
+  @media (min-width: 1200px) {
+    
+  }
+  @media (max-width: 766px) {
+    grid-template-columns: 1fr;
+  }
+}
+.subContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  @media (min-width: 767px) and (max-width: 1199px) {
+    
+  }
+  @media (min-width: 1200px) {
+    
+  }
+  @media (max-width: 766px) {
+    
+  }
+}
+
+
+
+.button {
+  background-color: orange;
+  border-radius: 10px;
+  padding: 0.5rem;
+  align-self: end;
+  margin: 1rem;
+}

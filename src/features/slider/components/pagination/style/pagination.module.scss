@@ -1,0 +1,27 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style-type:none;
+  gap: 1rem;
+  margin-top: .5rem;
+  align-items: center;
+}
+
+.count {
+  width: 2rem;
+  height: .5rem;
+  background-color: grey;
+  border-radius: 4px;
+  justify-items: center;
+  align-items: center;
+
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.countActive  {
+  width: 3.6rem;
+  height: .8rem;
+  background-color: black;
+}

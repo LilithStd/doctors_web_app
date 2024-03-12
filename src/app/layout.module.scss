@@ -1,0 +1,19 @@
+.mainContainer {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  @media (min-width: 767px) and (max-width: 1199px) {
+
+  }
+  @media (min-width: 1200px) {
+    width: 70%;
+  }
+  @media (max-width: 766px) {
+
+  }
+}
+
+.mainContent {
+  flex: 1 0 auto;
+}

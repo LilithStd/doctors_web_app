@@ -1,0 +1,5 @@
+export const SIZE_TITLE_GLOBAL = {
+	SMALL:'SMALL',
+	MEDIUM:'MEDIUM',
+	LARGE:'LARGE',
+}

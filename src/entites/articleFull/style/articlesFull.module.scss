@@ -1,0 +1,33 @@
+.container  {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.subContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  
+  @media (min-width: 767px) and (max-width: 1199px) {
+    
+  }
+  @media (min-width: 1200px) {
+    
+  }
+  @media (max-width: 766px) {
+    grid-template-columns: 1fr;
+    margin: 1rem;
+  }
+}
+
+.searchContainer  {
+  display: flex;
+  justify-content: center;
+}
+
+.title  {
+  text-align: center;
+}

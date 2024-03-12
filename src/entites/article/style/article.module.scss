@@ -1,0 +1,60 @@
+.container  {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 20px;
+
+}
+
+.subContainer {
+  display: grid;
+  grid-template-columns: 0.5fr 1.3fr;
+      @media (min-width: 767px) and (max-width: 1199px) {
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 1200px) {
+
+      }
+      @media (max-width: 766px) {
+        grid-template-columns: 1fr;
+      }
+}
+
+.contentContainer {
+  display: grid;
+  grid-template-rows: 1fr 0.1fr;
+  margin: 1rem;
+  @media (min-width: 767px) and (max-width: 1199px) {
+
+  }
+  @media (min-width: 1200px) {
+
+  }
+  @media (max-width: 766px) {
+    margin: .5rem;
+  }
+}
+
+.buttonProperty {
+  background-color: orange;
+  border-radius: 20px;
+  margin: 1rem;
+  padding: 1rem;
+  width: 80%;
+  justify-self: end;
+      @media (min-width: 767px) and (max-width: 1199px) {
+
+      }
+      @media (min-width: 1200px) {
+
+      }
+      @media (max-width: 766px) {
+        width: 50%;
+        justify-self: center;
+        margin: .8rem;
+        padding: .8rem;
+      }
+}
+
+.titleProperty  {
+  text-align: center;
+}

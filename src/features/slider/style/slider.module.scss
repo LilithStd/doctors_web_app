@@ -1,0 +1,19 @@
+.container  {
+  display: flex;
+  justify-content: space-around;
+  background-color: pink;
+      @media (min-width: 767px) and (max-width: 1199px) {
+
+      }
+      @media (min-width: 1200px) {
+
+      }
+      @media (max-width: 766px) {
+        padding: 1rem;
+      }
+}
+
+.container-slider-content {
+  display: flex;
+  flex-direction: row;
+}

@@ -1,0 +1,24 @@
+.container  {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  gap: 1rem;
+  justify-self: start;
+ 
+
+}
+.image {
+  background-color: rgba(138, 158, 1, 1);
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px black;
+  @media (min-width: 767px) and (max-width: 1199px) {
+      
+  }
+  @media (min-width: 1200px) {
+      
+  }
+  @media (max-width: 766px) {
+    width: 3rem;
+    height: 3rem;
+  }
+}

@@ -1,0 +1,52 @@
+.container  {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius:10px;
+  padding: 1rem;
+    @media (min-width: 767px) and (max-width: 1199px) {
+      
+    }
+    @media (min-width: 1200px) {
+      
+    }
+    @media (max-width: 766px) {
+    
+    }
+}
+
+.buttonProperty {
+  align-self: end;
+  background-color: orange;
+  border-radius: 20px;
+  margin: 1rem;
+  padding: 1rem;
+  width: 30%;
+  justify-self: end;
+  cursor:pointer;
+  &:hover {
+    background-color: red;
+  }
+    @media (min-width: 767px) and (max-width: 1199px) {
+      
+    }
+    @media (min-width: 1200px) {
+      
+    }
+    @media (max-width: 766px) {
+      width: 50%;
+      align-self: center;
+    }
+}
+
+.titleProperty  {
+  @media (min-width: 767px) and (max-width: 1199px) {
+      
+  }
+  @media (min-width: 1200px) {
+      
+  }
+  @media (max-width: 766px) {
+    text-align: center;
+  }
+}

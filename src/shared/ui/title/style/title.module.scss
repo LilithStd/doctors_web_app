@@ -1,0 +1,12 @@
+.defaultStyle {
+  font-size: 1.5rem;
+  @media (min-width: 767px) and (max-width: 1199px) {
+    font-size: 1.1rem;
+  }
+  @media (min-width: 1200px) {
+    font-size: 1.4rem;
+  }
+  @media (max-width: 766px) {
+    font-size: 1.7rem;
+  }
+}

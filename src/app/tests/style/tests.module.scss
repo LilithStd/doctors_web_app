@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.subContainer  {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 1rem;
+  margin: 1rem;
+  @media (max-width: 766px) {
+    grid-template-columns: 1fr;
+  }
+}
