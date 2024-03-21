@@ -1,13 +1,23 @@
-.mobileContent {
-  flex-direction: column;
-  position: fixed;
-  border-radius: 20px;
-  background-color: coral;
-  padding: 1rem;
-  top: 2rem;
-  left: 2rem;
-  right: 4.7rem;
- 
+.resizeContent {
+  @media (min-width: 767px) and (max-width: 1199px) {
+    flex-direction: row;
+    //display: none;
+  }
+  @media (min-width: 1200px) {
+    flex-direction: row;
+    //display: none;
+  }
+  @media (max-width: 766px) {
+    flex-direction: column;
+    position: fixed;
+    border-radius: 20px;
+    background-color: coral;
+    z-index: 1;
+    padding: 1rem;
+    top: 1.5rem;
+    left: 2rem;
+    right: 4.7rem;
+  }
 }
 
 .desktopContent {
@@ -24,7 +34,6 @@
 
 .item {
   cursor: pointer;
-  border: solid 2px black;
 }
 
 .link {
