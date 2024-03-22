@@ -1,3 +1,4 @@
+
 import { Title } from "@/shared/ui/title/title";
 import { NEWS_BUTTON_PROPS, NEWS_CONTENT_PROPS, NEWS_PROPS } from "@/entites/news/const/newsProps";
 import { Text } from "@/shared/ui/text/ui/text";

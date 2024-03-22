@@ -1,5 +1,4 @@
 import {create} from 'zustand';
-import {fetchDataNews} from "@/app/news/api/newsAPI";
 import {createJSONStorage, persist} from "zustand/middleware";
 
 export interface ArrayItem {

@@ -10,8 +10,16 @@ import logo from '../logo/style/logo.module.scss'
 export default function Logo () {
     return  (
         <div className={logo.container}>
-            <Image src={logoImage} alt={'site logo'} className={logo.image}/>
-            <Title size={LogoTitleProps.TITLE_SIZE} content={LogoTitleContentProps.content}/>
+            <Image
+                src={logoImage}
+                alt={'site logo'}
+                className={logo.image}
+                priority={true}
+            />
+            <Title
+                size={LogoTitleProps.TITLE_SIZE}
+                content={LogoTitleContentProps.content}
+            />
         </div>
 
     )
