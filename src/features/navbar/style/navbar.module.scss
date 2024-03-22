@@ -1,35 +1,4 @@
 .container  {
-  @media (min-width: 767px) and (max-width: 1199px) {
-    //display: none;
-  }
-  @media (min-width: 1200px) {
-    //display: none;
-  }
-  @media (max-width: 766px) {
 
-  }
-}
 
-.mobileContainer {
-  @media (min-width: 767px) and (max-width: 1199px) {
-    display: none;
-  }
-  @media (min-width: 1200px) {
-    display: none;
-  }
-  @media (max-width: 766px) {
-
-  }
-}
-
-.desktopContainer {
-  @media (min-width: 767px) and (max-width: 1199px) {
-    //display: none;
-  }
-  @media (min-width: 1200px) {
-    //display: none;
-  }
-  @media (max-width: 766px) {
-    display: none;
-  }
 }

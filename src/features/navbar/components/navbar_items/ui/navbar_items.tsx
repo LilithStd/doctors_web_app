@@ -8,9 +8,9 @@ interface items {
 }
 
 
-export default function NavbarItems () {
+export default function NavbarItems ({screenSize}: items) {
 	return  (
-		<ul className={`${navbarItems.container} ${navbarItems.resizeContent}`}>
+		<ul className={`${navbarItems.container} ${screenSize? navbarItems.mobileContent : navbarItems.desktopContent}`}>
 			{NAVBAR_ITEMS.map((item)=>
 				<li key={item.name} className={navbarItems.item}>{
 					<Link href={`/${item.link}`} className={navbarItems.link}>

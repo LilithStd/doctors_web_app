@@ -10,11 +10,13 @@ import { Text } from "@/shared/ui/text/ui/text";
 import article from "@/entites/article/style/article.module.scss"
 import { Button } from "@/shared/ui/button/ui/button";
 import ArticleLogo from "@/entites/article/components/articleLogo/ui/articleLogo";
-
+import { useMatchMedia } from "@/shared/hooks/media_query";
 import Link from "next/link";
 import {ArticleItemProps} from "@/entites/article/types/articleItemProps";
 
 export default function ArticleItem({id,titleContext,contentContext}:ArticleItemProps) {
+	// @ts-ignore
+	const { isMobile } = useMatchMedia()
 	const redirectCallback = () => {
 		return <Link
 			href={`/articles/${id}`}
@@ -29,7 +31,8 @@ export default function ArticleItem({id,titleContext,contentContext}:ArticleItem
 				size={ARTICLES_PROPS.TITLE_SIZE}
 				content={titleContext} />
 			<div className={article.subContainer}>
-				<ArticleLogo />
+				{isMobile? '' : <ArticleLogo />}
+
 				<div className={article.contentContainer}>
 					<Text content={contentContext} />
 					<Button

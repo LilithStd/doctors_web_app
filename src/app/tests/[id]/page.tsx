@@ -1,19 +1,24 @@
 'use client'
-import {testsStore} from "@/app/tests/store/testsStore";
+import {QuestionItem, testsStore} from "@/app/tests/store/testsStore";
 import {Title} from "@/shared/ui/title/title";
 import {SIZE_TITLE_GLOBAL} from "@/global_utils/titleProps/title_props";
 import {Text} from "@/shared/ui/text/ui/text";
 import testId from '@/app/tests/[id]/style/testId.module.scss'
 import {Button} from "@/shared/ui/button/ui/button";
-import {SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
+import {FieldValues, SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
 import {BUTTON_TYPE} from "@/shared/ui/button/const/button_type";
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
-import {CurrentTestsProps, FormValues} from "@/app/tests/[id]/props/testIdTypes";
-import {ANSWER_VARIANTS} from "@/app/tests/[id]/props/testIdProps";
 
 
+export interface CurrentTestsProps {
+	params: {id:string}
+}
 
+
+interface FormValues  {
+	[key: string]: string;
+}
 
 
 export async function getStaticPaths() {
@@ -59,7 +64,18 @@ export default function Test(props:CurrentTestsProps) {
 		}
 
 	},[currentTest.title])
-
+	// const formSubmitHandler = (e:HTMLFormElement) => {
+	// 	e.preventDefault();
+	// 	// Read the form data
+	// 	const form= e.target;
+	// 	const formData = new FormData(form);
+	// 	// Or you can work with it as a plain object:
+	// 	const formJson = Object.fromEntries(formData.entries());
+	// 	if(Object.keys(formJson).length < 3) {
+	// 		alert("Нужно ответить на все вопросы")
+	// 	}else{
+	// 		console.log('Все ответы получены')}
+	// }
 	const onSubmit:SubmitHandler<FormValues> = data => {
 		console.log(data)
 	}
@@ -68,13 +84,13 @@ export default function Test(props:CurrentTestsProps) {
 		alert('Нужно ответить на все вопросы!')
 	}
 
-	const onClickHandler = (event:Event) => {
-		event.preventDefault()
+	const onClick = () => {
+
 	}
 
 
 	return (
-		<div className={testId.container}>
+		<div>
 			<Title
 				size={SIZE_TITLE_GLOBAL.LARGE}
 				content={currentTest!.title}
@@ -86,38 +102,11 @@ export default function Test(props:CurrentTestsProps) {
 				onSubmit={handleSubmit(onSubmit, onError)}
 			>
 				{
-					<div
-						className={testId.answerVariants}
-
-					>
-						{ANSWER_VARIANTS.map((item) =>
-
-							<Title
-								size={SIZE_TITLE_GLOBAL.SMALL}
-								content={item.title}
-								key={item.id}
-							/>
-
-
-						)}
-					</div>
-
-				}
-				{
 					currentTest.questions.length !== 0 ?
 						currentTest.questions.map((item) =>
-							<label
-								key={item.title}
-								className={testId.labelContainer}
-							>
-								<div className={testId.variantItemContainer}
-								     key={item.title}
-								>
-									{
-										item.variants.map((variants) =>
-											<div className={testId.inputContainer}
-											     key={variants.title}
-											>
+							<label key={item.title}>
+								{
+									item.variants.map((variants) =>
 												<input
 													{...register(
 														item.title,
@@ -129,21 +118,12 @@ export default function Test(props:CurrentTestsProps) {
 													type={"radio"}
 													key={variants.title}
 													value={variants.count}
-													className={testId.inputItem}
 												/>
-											</div>
+									)
 
+								}
 
-										)
-
-									}
-							</div>
-
-								<Title
-									size={SIZE_TITLE_GLOBAL.SMALL}
-									content={item.title}
-									callback={onClickHandler}
-								/>
+								{item.title}
 							</label>
 						):
 						''
@@ -152,6 +132,7 @@ export default function Test(props:CurrentTestsProps) {
 			<Button
 				content={'Get Result'}
 				type={BUTTON_TYPE.SUBMIT}
+				callBack={onClick}
 			/>
 			</form>
 		</div>

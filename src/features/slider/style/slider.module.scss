@@ -18,8 +18,11 @@
   flex-direction: row;
 }
 
-.arrowImage {
-  @media (max-width: 766px) {
-    display: none;
-  }
+.animation  {
+  animation: ani 3s linear;
+}
+
+@keyframes ani {
+  from {opacity: 0}
+  to {opacity: 100}
 }
