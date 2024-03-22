@@ -26,3 +26,9 @@
   from {opacity: 0}
   to {opacity: 100}
 }
+
+.arrowImage {
+  @media (max-width: 766px) {
+    display: none;
+  }
+}

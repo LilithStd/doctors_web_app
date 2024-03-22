@@ -6,15 +6,11 @@ import arrowRight from '../assets/arrow_right.svg'
 import SliderContentContainer from "@/features/slider/components/container/ui/slider-content-container";
 import { SLIDER_ITEM } from "@/features/slider/const/slider-item";
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { useMatchMedia } from '@/shared/hooks/media_query';
 import Pagination from "@/features/slider/components/pagination/ui/pagination";
-import {sliderStore} from "@/features/slider/store/sliderStore";
+
 
 export default function Slider() {
     const [currentSlider, setCurrentSlider] = useState(0)
-    // @ts-ignore
-    const { isMobile } = useMatchMedia()
     const SLIDER_ITEMS = SLIDER_ITEM.slice()
     const sliderContent = SLIDER_ITEMS[currentSlider]
 
@@ -60,7 +56,12 @@ export default function Slider() {
     return (
 
         <div className={slider.container}>
-            {isMobile ? '' : <Image src={arrowLeft} alt={'arrow-left'} onClick={decrementSliderItem} />}
+            <Image
+                src={arrowLeft}
+                alt={'arrow-left'}
+                onClick={decrementSliderItem}
+                className={slider.arrowImage}
+            />
             <div className={slider.containerSliderContent}>
                 <SliderContentContainer
                     id={sliderContent.id}
@@ -75,7 +76,13 @@ export default function Slider() {
                 />
 
             </div>
-            {isMobile ? '' : <Image src={arrowRight} alt={'arrow-right'} onClick={incrementSliderItem} />}
+
+                <Image
+                src={arrowRight}
+                alt={'arrow-right'}
+                onClick={incrementSliderItem}
+                className={slider.arrowImage}
+                />
 
         </div>
     )
