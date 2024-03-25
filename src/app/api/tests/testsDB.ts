@@ -546,7 +546,7 @@ export const tests = [
 				]
 			},
 			{
-				title: "Rasstroistva povedenija question 3",
+				title: "Rasstroistva povedenija question 2",
 				variants:[
 					{
 						id: "1",
