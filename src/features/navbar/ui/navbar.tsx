@@ -21,8 +21,7 @@ export default function Navbar() {
 
 	return (
 		<>
-			{isMobile ? (
-				<>
+				<div className={navbar.containerMobile}>
 					<Image src={burgerIcons} alt={'burger_icons'} width={30} height={30} onClick={() => deviceScreenHandler()} />
 					<ModalWindow
 						active={active}
@@ -30,9 +29,12 @@ export default function Navbar() {
 						children={<NavbarItems screenSize={isMobile}
 						/>} />
 
-				</>
-
-			) : <NavbarItems screenSize={isMobile} />}
+				</div>
+			<div className={navbar.containerDesktop}>
+				<NavbarItems
+					screenSize={isMobile}
+				/>
+			</div>
 
 		</>
 
