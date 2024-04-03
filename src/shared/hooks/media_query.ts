@@ -1,29 +1,37 @@
 
 import {useState, useLayoutEffect} from 'react'
+import {log} from "util";
 
+// const queries = [
+// 	'(max-width: 766px)',
+// 	'(min-width: 767px) and (max-width: 1199px)',
+// 	'(min-width: 1200px)',
+//
+// ]
 const queries = [
-	'(max-width: 766px)',
-	'(min-width: 767px) and (max-width: 1199px)',
-	'(min-width: 1200px)',
+	'1',
+	'2',
+	'3',
 
 ]
 export const useMatchMedia = () => {
-	if ( typeof window === 'undefined') return
-	const mediaQueryLists = queries.map(query => matchMedia(query))
-	const getValues = () => mediaQueryLists.map(mql => mql.matches)
-	const [values,setValue] = useState(getValues)
-	useLayoutEffect(() => {
-		const handler = () => setValue(getValues)
+	// if ( typeof window === 'undefined') return
+	const mediaQueryLists = queries.map(query => query)
+	// const getValues = () => mediaQueryLists.map(mql => mql.matches)
+	// const [values,setValue] = useState(getValues)
+	// useLayoutEffect(() => {
+	// 	const handler = () => setValue(getValues)
+	//
+	// 	mediaQueryLists.forEach( mql => mql.addEventListener('change', handler))
+	//
+	// 	return () => mediaQueryLists.forEach(mql => mql.removeEventListener('change', handler))
+	// });
+	return {}
+	// return [
+	// 	'isMobile',
+	// 	'isTablet',
+	// 	'isDesktop'
+	// ].reduce((acc,screen,index) => ({...acc,[screen]: values[index]}),{})
 
-		mediaQueryLists.forEach( mql => mql.addEventListener('change', handler))
 
-		return () => mediaQueryLists.forEach(mql => mql.removeEventListener('change', handler))
-	});
-	return [
-		'isMobile',
-		'isTablet',
-		'isDesktop'
-	].reduce((acc,screen,index) => ({...acc,[screen]: values[index]}),{}
-
-	)
 }

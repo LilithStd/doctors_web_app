@@ -11,10 +11,13 @@ import { useState } from "react";
 import ModalWindow from '../components/modal_window/ui/modal_window';
 
 
+
 export default function Navbar() {
+
+
 	const [active, setActive] = useState(false);
-	// @ts-ignore
-	const { isMobile } = useMatchMedia()
+
+	// const {} = useMatchMedia()
 	const deviceScreenHandler = () => {
 		setActive(true)
 	}
@@ -26,14 +29,12 @@ export default function Navbar() {
 					<ModalWindow
 						active={active}
 						setActive={setActive}
-						children={<NavbarItems screenSize={isMobile}
-						/>} />
+						children={<NavbarItems/>}
+					/>
 
 				</div>
 			<div className={navbar.containerDesktop}>
-				<NavbarItems
-					screenSize={isMobile}
-				/>
+				<NavbarItems/>
 			</div>
 
 		</>

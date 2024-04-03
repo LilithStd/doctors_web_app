@@ -5,7 +5,7 @@ import {StoreTypes} from "@/app/consultation/store/types/consultationStoreTypes"
 
 
 
-export const userData = create<StoreTypes>((set) 	 => ({
+export const userData = create<StoreTypes>((set,get) 	 => ({
 	userForm:{
 		name:'',
 		phone:0,

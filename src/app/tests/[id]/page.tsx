@@ -9,6 +9,8 @@ import {FieldValues, SubmitErrorHandler, SubmitHandler, useForm} from "react-hoo
 import {BUTTON_TYPE} from "@/shared/ui/button/const/button_type";
 import {useEffect} from "react";
 import {useRouter} from "next/navigation";
+import useStore from "@/global_utils/storeUtils/useStore";
+import Loading from "@/app/loading";
 
 
 export interface CurrentTestsProps {
@@ -49,33 +51,22 @@ export default function Test(props:CurrentTestsProps) {
 	const {register,
 		handleSubmit
 	} =  useForm<FormValues>()
-	const getTest = testsStore(state => state.testsAll)
+	const getTest = useStore(testsStore,state => state.testsAll)
 	const setCurrentTest = testsStore(state => state.setCurrentTest)
 	setCurrentTest(props.params.id)
-	const storeCurrentTest = testsStore(state => state.currentTest)
-	const currentTest =
-		getTest.length !== 0 ?
-			storeCurrentTest :
-				{id:'1',title:'Error News Identification',content:'',questions:[]}
-	useEffect(() => {
-		if(currentTest.title === 'Error News Identification') {
-			router.push('/')
-			console.log('redirect to main page')
-		}
+	const storeCurrentTest = useStore(testsStore,state => state.currentTest)
+	// const currentTest =
+	// 	getTest && getTest.length !== 0 ?
+	// 		storeCurrentTest :
+	// 			{id:'1',title:'Error News Identification',content:'',questions:[]}
+	// useEffect(() => {
+	// 	if(currentTest!.title === 'Error News Identification') {
+	// 		router.push('/')
+	// 		console.log('redirect to main page')
+	// 	}
+	//
+	// },[currentTest!.title])
 
-	},[currentTest.title])
-	// const formSubmitHandler = (e:HTMLFormElement) => {
-	// 	e.preventDefault();
-	// 	// Read the form data
-	// 	const form= e.target;
-	// 	const formData = new FormData(form);
-	// 	// Or you can work with it as a plain object:
-	// 	const formJson = Object.fromEntries(formData.entries());
-	// 	if(Object.keys(formJson).length < 3) {
-	// 		alert("Нужно ответить на все вопросы")
-	// 	}else{
-	// 		console.log('Все ответы получены')}
-	// }
 	const onSubmit:SubmitHandler<FormValues> = data => {
 		console.log(data)
 	}
@@ -91,19 +82,24 @@ export default function Test(props:CurrentTestsProps) {
 
 	return (
 		<div>
-			<Title
-				size={SIZE_TITLE_GLOBAL.LARGE}
-				content={currentTest!.title}
-				property={testId.testIdTitle}
-			/>
-			<Text content={currentTest!.content}/>
+			{
+				storeCurrentTest ? <>
+					<Title
+						size={SIZE_TITLE_GLOBAL.LARGE}
+						content={storeCurrentTest!.title}
+						property={testId.testIdTitle}
+					/>
+					<Text content={storeCurrentTest!.content}/>
+				</> : <Loading/>
+			}
+
 			<form
 				className={testId.formContainer}
 				onSubmit={handleSubmit(onSubmit, onError)}
 			>
 				{
-					currentTest.questions.length !== 0 ?
-						currentTest.questions.map((item) =>
+					storeCurrentTest && storeCurrentTest.questions.length !== 0 ?
+						storeCurrentTest.questions.map((item) =>
 							<label key={item.title}>
 								{
 									item.variants.map((variants) =>
@@ -125,8 +121,7 @@ export default function Test(props:CurrentTestsProps) {
 
 								{item.title}
 							</label>
-						):
-						''
+						): ''
 				}
 
 			<Button

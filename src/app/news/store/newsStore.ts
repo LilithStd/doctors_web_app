@@ -21,21 +21,22 @@ export interface NewsStoreProps {
 export const newsStore = create<NewsStoreProps>()(
 	persist(
 
-		(set) => ({
+		(set,get) => ({
 			newsAll: [],
 			currentNews:{id:'', title:'',content:''},
 			loading:false,
-			getAllNews: (newsAllLoading) => set((state) => ({
-				newsAll: state.newsAll = newsAllLoading,
+			getAllNews: (newsAllLoading) => set({
+				newsAll: get().newsAll = newsAllLoading,
 				loading: true
-			})),
-			setCurrentNews: (newsID) => set((state) => ({
-				loading: state.newsAll.length !== 0,
-				currentNews: state.newsAll.find((item) => item.id === newsID )
-			})),
+			}),
+			setCurrentNews: (newsID) => set({
+				loading: get().newsAll.length !== 0,
+				currentNews: get().newsAll.find((item) => item.id === newsID )
+			}),
 		}),
 		{
 			name:'news-storage',
-			storage: createJSONStorage(() => sessionStorage)}
+			storage: createJSONStorage(() => sessionStorage),
+		},
 	)
 )

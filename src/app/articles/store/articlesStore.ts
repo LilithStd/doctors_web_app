@@ -20,18 +20,18 @@ export interface ArticlesStoreProps {
 export const articlesStore = create<ArticlesStoreProps>()(
 	persist(
 
-		(set) => ({
+		(set,get) => ({
 			articlesAll: [],
 			currentArticle:{id:'', title:'',content:''},
 			loading:false,
-			getAllArticles: (newsAllLoading) => set((state) => ({
-				newsAll: state.articlesAll = newsAllLoading,
+			getAllArticles: (newsAllLoading) => set ({
+				articlesAll: get().articlesAll = newsAllLoading,
 				loading: true
-			})),
-			setCurrentArticle: (articleID) => set((state) => ({
-				loading: state.articlesAll.length !== 0,
-				currentArticle: state.articlesAll.find((item) => item.id === articleID )
-			})),
+			}),
+			setCurrentArticle: (articleID) => set ({
+				loading: get().articlesAll.length !== 0,
+				currentArticle: get().articlesAll.find((item) => item.id === articleID )
+			}),
 		}),
 		{
 			name:'articles-storage',

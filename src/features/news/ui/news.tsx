@@ -6,6 +6,8 @@ import useSWR from "swr";
 import {ArrayItem, newsStore} from "@/app/news/store/newsStore";
 import {fetchDataNews} from "@/app/news/api/newsAPI";
 import {useEffect} from "react";
+import Loading from "@/app/loading";
+import useStore from "@/global_utils/storeUtils/useStore";
 
 
 export default function News () {
@@ -24,13 +26,13 @@ export default function News () {
     )
 
 
-    const newsResult = newsStore(state => state.newsAll)
-    const loading = newsStore(state => state.loading)
+    const newsResult = useStore(newsStore,state => state.newsAll)
+    const loading = useStore(newsStore,state => state.loading)
 
 
     function RandomNews() {
         const randomNews:ArrayItem[] = []
-        const copyOriginal = newsResult.slice();
+        const copyOriginal = newsResult ?newsResult.slice() : [];
         setInterval(function () {
 
         },10000)
@@ -54,14 +56,14 @@ export default function News () {
                 <Title size={NEWS_PROPS.TITLE_SIZE} content={'Random NEWS'}/>
             </div>
             <div className={news.subContainer}>
-                { loading ? randomNews.map((item) =>
+                { loading  ? randomNews.map((item) =>
                     <NewsItem
-                        key={item.id}
+                        key={item!.id}
                         id={item.id}
                         titleContext={item.title}
                         contentContext={item.content}
 
-                    />) : 'loading'}
+                    />) : <Loading/>}
             </div>
         </div>
     )

@@ -8,6 +8,7 @@ import {ArrayItem, newsStore} from "@/app/news/store/newsStore";
 import {useEffect} from "react";
 import {articlesStore} from "@/app/articles/store/articlesStore";
 import {fetchDataArticles} from "@/app/articles/api/articlesAPI";
+import useStore from "@/global_utils/storeUtils/useStore";
 
 export default function Articles() {
     const { data, isLoading,error } = useSWR<ArrayItem[]>('http://localhost:3000/api/articles', fetchDataArticles);
@@ -24,11 +25,12 @@ export default function Articles() {
         ,[data]
     )
 
-    const articleResult = articlesStore(state => state.articlesAll)
-    const loading = articlesStore(state => state.loading)
+    const articleResult = useStore(articlesStore,state => state.articlesAll)
+    const loading = useStore(articlesStore,state => state.loading)
 
     function RandomArticle() {
-        const copyOriginal = articleResult.slice();
+
+        const copyOriginal = articleResult ? articleResult.slice() : [];
         const randomInteger = getRandomInteger(0,copyOriginal.length - 1)
         return copyOriginal[randomInteger]
     }

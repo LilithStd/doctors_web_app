@@ -9,15 +9,18 @@ import {useEffect} from "react";
 import {ArrayItem, testsStore} from "@/app/tests/store/testsStore";
 import {fetchDataTests} from "@/app/tests/api/testsAPI";
 import {searchStore} from "@/shared/ui/search/store/searchStore";
+import useStore from "@/global_utils/storeUtils/useStore";
+import Loading from "@/app/loading";
 
 export default function Tests() {
-	const testsAll = testsStore(state => state.testsAll)
+	const testsAll = useStore(testsStore,state => state.testsAll)
 	const { data, isLoading,error } = useSWR<ArrayItem[]>('http://localhost:3000/api/tests', fetchDataTests);
 	const getTests = testsStore(state => state.getAllTests)
-	const searchLoading = searchStore(state => state.loading)
-	const searchContext = searchStore(state => state.currentSearch)
+	const searchLoading = useStore(searchStore,state => state.loading)
+	const searchContext = useStore(searchStore,state => state.currentSearch)
+
 	const searchHandler = () => {
-		if(searchLoading) {
+		if(searchLoading  && testsAll && searchContext) {
 			return testsAll.filter((item) => item.title.toLowerCase().includes(searchContext))
 
 		}else return []
@@ -50,7 +53,7 @@ export default function Tests() {
 						title={item.title}
 						context={''}
 						key={item.id}
-					/>):'Совпадений не найдено'}
+					/>): <Loading/>}
 			</div>
 		</div>
 	)

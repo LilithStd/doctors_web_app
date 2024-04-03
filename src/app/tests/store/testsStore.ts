@@ -32,7 +32,7 @@ export interface TestsStoreProps {
 export const testsStore = create<TestsStoreProps>()(
 	persist(
 
-		(set) => ({
+		(set,get) => ({
 			testsAll: [],
 			currentTest:{
 				id:'',
@@ -47,14 +47,14 @@ export const testsStore = create<TestsStoreProps>()(
 
 				},
 			loading:false,
-			getAllTests: (testsAllLoading) => set((state) => ({
-				newsAll: state.testsAll = testsAllLoading,
+			getAllTests: (testsAllLoading) => set ({
+				testsAll: get().testsAll = testsAllLoading,
 				loading: true
-			})),
-			setCurrentTest: (testID) => set((state) => ({
-				loading: state.testsAll.length !== 0,
-				currentTest: state.testsAll.find((item) => item.id === testID )
-			})),
+			}),
+			setCurrentTest: (testID) => set ({
+				loading: get().testsAll.length !== 0,
+				currentTest: get().testsAll.find((item) => item.id === testID )
+			}),
 		}),
 		{
 			name:'tests-storage',

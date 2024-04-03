@@ -1,7 +1,7 @@
 'use client'
 import articles from '@/app/articles/style/articles.module.scss'
 import useSWR from "swr";
-import {useEffect} from "react";
+import {Suspense, useEffect} from "react";
 import {fetchDataArticles} from "@/app/articles/api/articlesAPI";
 import {ArrayItem, articlesStore} from "@/app/articles/store/articlesStore";
 import articlesFull from "@/entites/articleFull/style/articlesFull.module.scss";
@@ -10,17 +10,20 @@ import {SIZE_TITLE_GLOBAL} from "@/global_utils/titleProps/title_props";
 import Search from "@/shared/ui/search/ui/search";
 import ArticleItem from "@/entites/article/ui/article";
 import {searchStore} from "@/shared/ui/search/store/searchStore";
+import Loading from "@/app/loading";
+
+import useStore from "@/global_utils/storeUtils/useStore";
 
 
 export default function ArticlesPages () {
-    const articlesAll =  articlesStore(state => state.articlesAll)
+    const articlesAll =  useStore(articlesStore,state => state.articlesAll)
     const { data, isLoading,error } = useSWR<ArrayItem[]>('http://localhost:3000/api/articles', fetchDataArticles);
     const getArticles = articlesStore(state => state.getAllArticles)
     const searchLoading = searchStore(state => state.loading)
     const searchContext = searchStore(state => state.currentSearch)
 
     const searchHandler = () => {
-        if(searchLoading && searchContext !== '') {
+        if(searchLoading && searchContext !== '' && articlesAll) {
             return articlesAll.filter((item) => item.title.toLowerCase().includes(searchContext))
 
         }else return articlesAll
@@ -51,31 +54,17 @@ export default function ArticlesPages () {
                     <Search/>
                 </div>
                 <div className={articlesFull.subContainer}>
-                    {isSearchResult.map((item) =>
-                        <ArticleItem
-                            key={item.id}
-                            id={item.id}
-                            titleContext={item.title}
-                            contentContext={item.content}
-                        />)
-                    }
-                    {/*{articlesAll && searchContext === '' ?*/}
-                    {/*    articlesAll.map((item) =>*/}
-                    {/*        <ArticleItem*/}
-                    {/*            key={item.id}*/}
-                    {/*            id={item.id}*/}
-                    {/*            titleContext={item.title}*/}
-                    {/*            contentContext={item.content}*/}
-                    {/*        />)*/}
-                    {/*    : isSearchResult.length !== 0 ? isSearchResult.map((item) =>*/}
-                    {/*            <ArticleItem*/}
-                    {/*                key={item.id}*/}
-                    {/*                id={item.id}*/}
-                    {/*                titleContext={item.title}*/}
-                    {/*                contentContext={item.content}*/}
-                    {/*            />):'Совпадений не найдено'*/}
 
-                    {/*}*/}
+                        {isSearchResult ? isSearchResult.map((item) =>
+                            <ArticleItem
+                                key={item.id}
+                                id={item.id}
+                                titleContext={item.title}
+                                contentContext={item.content}
+                            />): <Loading/>
+                        }
+
+
                 </div>
 
             </div>

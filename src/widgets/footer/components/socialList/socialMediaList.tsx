@@ -4,10 +4,14 @@ import Image from "next/image";
 
 export default function SocialMediaList () {
     const socialMediaIcons = socialList(true)
+
     return  (
         <div className={socialMedia.container}>
             {socialMediaIcons.map((item) =>
-                <Image src={item} alt={''}/>)
+                <Image
+                    src={item}
+                    alt={''}
+                />)
             }
         </div>
     )

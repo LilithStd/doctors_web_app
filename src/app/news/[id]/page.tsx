@@ -4,6 +4,9 @@ import {Title} from "@/shared/ui/title/title";
 import {Text} from "@/shared/ui/text/ui/text";
 import {SIZE_TITLE_GLOBAL} from "@/global_utils/titleProps/title_props";
 import newsId from "./style/newsId.module.scss"
+import {Suspense, useEffect} from "react";
+import useStore from "@/global_utils/storeUtils/useStore";
+import Loading from "@/app/loading";
 
 
 
@@ -35,22 +38,32 @@ export async function getStaticProps(context:any) {
 	}
 }
 export default function News (props: CurrentNewsProps) {
-	const getNews = newsStore(state => state.newsAll)
-	const setCurrentNews = newsStore(state => state.setCurrentNews)
+	const getNews = useStore(newsStore,state => state.newsAll)
+	const setCurrentNews = newsStore (state => state.setCurrentNews)
 	setCurrentNews(props.params.id)
-	const storeCurrentNews = newsStore(state => state.currentNews)
+	const storeCurrentNews = useStore(newsStore,state => state.currentNews)
 
-	const currentNews = getNews.length !== 0 ? storeCurrentNews : {id:'1',title:'Error News Identification',content:''}
-
+	// const currentNews = getNews && getNews.length !== 0 ? storeCurrentNews
+	// const currentNews = getNews && getNews.length !== 0 ? storeCurrentNews : {id:'1',title:'Error' +
+	// 		' News' +
+	// 		' Identification',content:''}
     return  (
 
         <div className={newsId.container}>
-	        <Title
-		        size={SIZE_TITLE_GLOBAL.LARGE}
-		        content={currentNews!.title}
-		        property={newsId.newsIdTitle}
-	        />
-	        <Text content={currentNews!.content}/>
+	        {
+				storeCurrentNews ?
+					<>
+						<Title
+							size={SIZE_TITLE_GLOBAL.LARGE}
+							content={storeCurrentNews!.title}
+							property={newsId.newsIdTitle}
+						/>
+						<Text content={storeCurrentNews.content}/>
+
+					</>
+		        : <Loading/>
+
+	        }
         </div>
     )
 }
