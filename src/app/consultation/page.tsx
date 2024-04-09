@@ -15,6 +15,10 @@ import { userData } from "@/app/consultation/store/consultationsStore";
 import SelectList from "./components/selectList/selectList";
 import Select from 'react-select';
 import { BUTTON_TYPE } from "@/shared/ui/button/const/button_type";
+import useStore from "@/global_utils/storeUtils/useStore";
+import SuccessSendFormScreen
+    from "@/app/consultation/components/successSendFormScreen/successSendFormScreen";
+
 
 
 
@@ -27,21 +31,34 @@ import { BUTTON_TYPE } from "@/shared/ui/button/const/button_type";
 
 
 export default function Consultation() {
-    const { register, handleSubmit, control } = useForm();
-    const [selectedOption, setSelectedOption] = useState(null);
+    const { register, handleSubmit, control,reset } = useForm();
+    const [submitSuccess, setSubmitSuccess] = useState(false)
     const send = userData(state => state.createUserFormData)
-    const getForm = userData(state => state.userForm)
-    const submitFormSend = (data: formProps | FieldValues) => {
-        send(data)
-
+    const getForm = useStore(userData,state => state.userForm)
+    const defaultForm = {
+            name:'',
+            phone:0,
+            email:'',
+            variant:'',
+            userText:'',
     }
-    console.log(getForm)
+    const submitFormSend = (data: formProps | FieldValues) => {
 
-
+            send(data)
+            setSubmitSuccess(true)
+            reset()
+            send(defaultForm)
+        setTimeout(()=> {
+            setSubmitSuccess(false)
+            console.log(getForm)
+        },3000)
+    }
+    // console.log(getForm)
     return (
 
         <div className={consultation.container}>
             <Title size={SIZE_TITLE_GLOBAL.LARGE} content={'Запись на консультацию'} />
+            <SuccessSendFormScreen  active={submitSuccess}/>
             <div className={consultation.subContainer}>
                 <div className={consultation.imageContainer}>
                     <Image src={consultationImage} alt={'consultation hands images'} width={300} height={300} />
@@ -51,37 +68,52 @@ export default function Consultation() {
                         {...register('name', { required: true })}
                         type={'text'}
                         className={consultation.inputItem}
-                        placeholder={'ваше имя *'} />
+                        placeholder={'ваше имя *'}
+                    />
                     <input
                         {...register('phone')}
                         type={'tel'}
                         className={consultation.inputItem}
                         placeholder={'ваш' +
-                            ' телефон *'} />
+                            ' телефон *'}
+                    />
                     <input
                         {...register('email')}
                         type={'email'}
                         className={consultation.inputItem}
-                        placeholder={'ваш email *'} />
-                    <Controller
-                        name="variant"
-                        control={control}
-
-                        defaultValue={null}
-                        render={({ field }) => (
-                            <Select
-                                {...field}
-                                className={consultation.inputItem}
-                                options={[
-                                    { value: 'option1', label: 'Option 1' },
-                                    { value: 'option2', label: 'Option 2' },
-                                    { value: 'option3', label: 'Option 3' },
-                                ]}
-                                defaultValue={null}
-
-                            />
-                        )}
+                        placeholder={'ваш email *'}
                     />
+                    <select
+                        id="cars" {...register('variant')}
+                        className={consultation.inputItemSelectContainer}
+                    >
+                        <option className={consultation.inputItemSelect}
+                                value="">Ваш выбор
+                        </option>
+                        <option className={consultation.inputItemSelect} value="volvo">Volvo</option>
+                        <option className={consultation.inputItemSelect} value="saab">Saab</option>
+                        <option className={consultation.inputItemSelect} value="mercedes">Mercedes</option>
+                        <option className={consultation.inputItemSelect} value="audi">Audi</option>
+
+                    </select>
+                    {/*<Controller*/}
+                    {/*    name="variant"*/}
+                    {/*    control={control}*/}
+                    {/*    defaultValue={null}*/}
+                    {/*    render={({ field }) => (*/}
+                    {/*        <Select*/}
+                    {/*            {...field}*/}
+                    {/*            className={consultation.inputItem}*/}
+                    {/*            options={[*/}
+                    {/*                { value: 'option1', label: 'Option 1' },*/}
+                    {/*                { value: 'option2', label: 'Option 2' },*/}
+                    {/*                { value: 'option3', label: 'Option 3' },*/}
+                    {/*            ]}*/}
+                    {/*            defaultValue={null}*/}
+
+                    {/*        />*/}
+                    {/*    )}*/}
+                    {/*/>*/}
                     <textarea
                         {...register('userText')}
                         className={consultation.textAreaItem}
