@@ -47,11 +47,9 @@ export async function getStaticProps(context:any) {
 	}
 }
 export default function Test(props:CurrentTestsProps) {
-	const router = useRouter()
 	const {register,
 		handleSubmit
 	} =  useForm<FormValues>()
-	const getTest = useStore(testsStore,state => state.testsAll)
 	const setCurrentTest = testsStore(state => state.setCurrentTest)
 	setCurrentTest(props.params.id)
 	const storeCurrentTest = useStore(testsStore,state => state.currentTest)
@@ -89,7 +87,10 @@ export default function Test(props:CurrentTestsProps) {
 						content={storeCurrentTest!.title}
 						property={testId.testIdTitle}
 					/>
-					<Text content={storeCurrentTest!.content}/>
+					<Text
+						content={storeCurrentTest!.content}
+						property={testId.testIdText}
+					/>
 				</> : <Loading/>
 			}
 
@@ -100,26 +101,31 @@ export default function Test(props:CurrentTestsProps) {
 				{
 					storeCurrentTest && storeCurrentTest.questions.length !== 0 ?
 						storeCurrentTest.questions.map((item) =>
-							<label key={item.title}>
+							<label key={item.title} className={testId.labelContainer}>
 								{
 									item.variants.map((variants) =>
-												<input
-													{...register(
-														item.title,
-														{
-															required:true
-														}
-													)
+										<label key={variants.title}>
+											<input
+												{...register(
+													item.title,
+													{
+														required:true
 													}
-													type={"radio"}
-													key={variants.title}
-													value={variants.count}
-												/>
+												)
+												}
+												type={"radio"}
+												key={variants.title}
+												value={variants.count}
+												className={testId.input}
+											/>
+											test
+										</label>
+
 									)
 
 								}
 
-								{item.title}
+								<Title size={SIZE_TITLE_GLOBAL.SMALL} content={item.title}/>
 							</label>
 						): ''
 				}

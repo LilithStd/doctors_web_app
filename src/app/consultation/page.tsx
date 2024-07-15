@@ -86,34 +86,28 @@ export default function Consultation() {
                     <select
                         id="cars" {...register('variant')}
                         className={consultation.inputItemSelectContainer}
+                        defaultValue={""}
+
                     >
-                        <option className={consultation.inputItemSelect}
-                                value="">Ваш выбор
+                        <option
+                            className={consultation.inputItemSelect}
+                            value="" hidden={true}>Ваш выбор
+
                         </option>
-                        <option className={consultation.inputItemSelect} value="volvo">Volvo</option>
-                        <option className={consultation.inputItemSelect} value="saab">Saab</option>
-                        <option className={consultation.inputItemSelect} value="mercedes">Mercedes</option>
-                        <option className={consultation.inputItemSelect} value="audi">Audi</option>
+                        <option
+                            className={consultation.inputItemSelect}
+                            value="1">Variant 1</option>
+                        <option
+                            className={consultation.inputItemSelect}
+                            value="2">Variant 2</option>
+                        <option
+                            className={consultation.inputItemSelect}
+                            value="3">Variant 3</option>
+                        <option
+                            className={consultation.inputItemSelect}
+                            value="4">Variant 4</option>
 
                     </select>
-                    {/*<Controller*/}
-                    {/*    name="variant"*/}
-                    {/*    control={control}*/}
-                    {/*    defaultValue={null}*/}
-                    {/*    render={({ field }) => (*/}
-                    {/*        <Select*/}
-                    {/*            {...field}*/}
-                    {/*            className={consultation.inputItem}*/}
-                    {/*            options={[*/}
-                    {/*                { value: 'option1', label: 'Option 1' },*/}
-                    {/*                { value: 'option2', label: 'Option 2' },*/}
-                    {/*                { value: 'option3', label: 'Option 3' },*/}
-                    {/*            ]}*/}
-                    {/*            defaultValue={null}*/}
-
-                    {/*        />*/}
-                    {/*    )}*/}
-                    {/*/>*/}
                     <textarea
                         {...register('userText')}
                         className={consultation.textAreaItem}

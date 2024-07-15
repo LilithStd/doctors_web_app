@@ -1,9 +1,23 @@
 .testIdTitle {
   color:lightseagreen;
+  text-align: center;
+}
+
+.testIdText {
+  margin: 1rem;
 }
 
 .formContainer {
   display: grid;
   align-items: center;
   text-align: center;
+  .labelContainer {
+    display: flex;
+    margin: 1rem;
+    flex-direction: row-reverse;
+    .input {
+      margin: .8rem;
+      align-items: end;
+    }
+  }
 }

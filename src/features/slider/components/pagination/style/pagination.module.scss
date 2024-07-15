@@ -5,6 +5,10 @@
   gap: 1rem;
   margin-top: .5rem;
   align-items: center;
+  padding: 1rem;
+  @media (max-width: 766px) {
+    padding: .2rem;
+  }
 }
 
 .count {

@@ -5,7 +5,7 @@ import NewsItem from "@/entites/news/ui/news-item";
 import useSWR from "swr";
 import {ArrayItem, newsStore} from "@/app/news/store/newsStore";
 import {fetchDataNews} from "@/app/news/api/newsAPI";
-import {useEffect} from "react";
+import {Suspense, useEffect} from "react";
 import Loading from "@/app/loading";
 import useStore from "@/global_utils/storeUtils/useStore";
 

@@ -10,6 +10,7 @@ export default function ArticleLogo() {
         <div className={articleLogo.container}>
             <Image
                 src={articleLogoContent}
+                priority={true}
                 alt={'article_picture'}
                 className={articleLogo.imageProperty}
             />

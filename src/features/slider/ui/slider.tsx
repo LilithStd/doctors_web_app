@@ -11,6 +11,7 @@ import Pagination from "@/features/slider/components/pagination/ui/pagination";
 
 export default function Slider() {
     const [currentSlider, setCurrentSlider] = useState(0)
+    const [stepSlider, setStepSlider] = useState(true)
     const SLIDER_ITEMS = SLIDER_ITEM.slice()
     const sliderContent = SLIDER_ITEMS[currentSlider]
 
@@ -19,17 +20,21 @@ export default function Slider() {
     useEffect(() => {
         const interval = setInterval(() => {
             if(currentSlider < SLIDER_ITEM.length - 1) {
-
                 setCurrentSlider( currentSlider + 1)
             }else {
                 setCurrentSlider(0)
             }
-
-
-
+            setStepSlider(true)
         }, 10000);
         return () => clearInterval(interval);
     },[currentSlider])
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setStepSlider(false)
+        },9900);
+        return () => clearInterval(interval)
+    },[stepSlider])
 
     const redirectSliderItem = (item: string) => {
         const redirectItem = SLIDER_ITEMS.findIndex(
@@ -67,7 +72,7 @@ export default function Slider() {
                     id={sliderContent.id}
                     title={sliderContent.title}
                     content={sliderContent.content}
-                    property={slider.animation}
+                    property={stepSlider? slider.animation : ''}
                 />
                 <Pagination
                     sliderItems={SLIDER_ITEMS}
